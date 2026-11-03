@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#faf8ff" />
+<title>Nama Anda — Calon Psikolog</title>
+<meta name="description" content="Portofolio Nama Anda — Mahasiswa Psikologi & Calon Psikolog." />
+<style>
+  /* ================= DESIGN TOKENS ================= */
+  :root{
+    --bg:#faf8ff;
+    --surface:#ffffff;
+    --surface-2:#f3eeff;
+    --text:#2d2a3e;
+    --muted:#6b6684;
+    --border:#e8e2f5;
+    --lavender:#a78bfa;
+    --lavender-light:#ddd6fe;
+    --lavender-soft:#f0ebff;
+    --lavender-dark:#7c3aed;
+    --mint:#6ee7b7;
+    --mint-light:#d1fae5;
+    --mint-soft:#ecfdf5;
+    --mint-dark:#059669;
+    --peach:#fed7aa;
+    --peach-soft:#fff4e6;
+    --rose:#fbcfe8;
+    --rose-soft:#fdf2f8;
+    --radius:22px;
+    --radius-sm:14px;
+    --radius-pill:999px;
+    --shadow-sm:0 2px 10px rgba(167,139,250,.08);
+    --shadow:0 6px 24px rgba(167,139,250,.10);
+    --shadow-lg:0 16px 48px rgba(167,139,250,.16);
+    --maxw:1120px;
+    --nav-h:66px;
+    --serif:Georgia,"Times New Roman","Iowan Old Style",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  }
+  [data-theme="dark"]{
+    --bg:#171225;
+    --surface:#221b33;
+    --surface-2:#2c2440;
+    --text:#ede9fe;
+    --muted:#a89ec2;
+    --border:#382e52;
+    --lavender:#c4b5fd;
+    --lavender-light:#4c3a7a;
+    --lavender-soft:#2c2440;
+    --lavender-dark:#a78bfa;
+    --mint:#6ee7b7;
+    --mint-light:#1a4d3a;
+    --mint-soft:#152e26;
+    --peach:#fbcfa0;
+    --peach-soft:#2b2118;
+    --rose:#f9a8d4;
+    --rose-soft:#2e1c28;
+    --shadow-sm:0 2px 10px rgba(0,0,0,.25);
+    --shadow:0 6px 24px rgba(0,0,0,.35);
+    --shadow-lg:0 16px 48px rgba(0,0,0,.5);
+  }
+
+  /* ================= RESET ================= */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{
+    scroll-behavior:smooth;
+    scroll-padding-top:calc(var(--nav-h) + 12px);
+    -webkit-text-size-adjust:100%;
+  }
+  body{
+    font-family:var(--sans);
+    background:var(--bg);color:var(--text);line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    transition:background-color .3s,color .3s;
+    position:relative;
+    min-height:100vh;
+  }
+  /* Blob background */
+  body::before,
+  body::after{
+    content:"";position:fixed;border-radius:50%;filter:blur(80px);
+    z-index:-1;pointer-events:none;
+    opacity:.55;
+    transition:opacity .3s;
+  }
+  body::before{
+    width:520px;height:520px;
+    top:-180px;left:-160px;
+    background:var(--lavender-light);
+  }
+  body::after{
+    width:600px;height:600px;
+    bottom:-220px;right:-200px;
+    background:var(--mint-light);
+  }
+  [data-theme="dark"] body::before,
+  [data-theme="dark"] body::after{opacity:.25}
+  img{max-width:100%;display:block}
+  a{color:var(--lavender-dark);text-decoration:none;transition:color .2s}
+  a:hover{color:var(--lavender)}
+  ul{list-style:none}
+  button{font:inherit;color:inherit;cursor:pointer}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:700;line-height:1.2}
+
+  /* ================= NAVBAR ================= */
+  nav{
+    position:sticky;top:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    min-height:var(--nav-h);
+    padding:.85rem 1.5rem;
+    background:color-mix(in srgb,var(--bg) 80%,transparent);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid color-mix(in srgb,var(--border) 60%,transparent);
+  }
+  .nav-logo{
+    font-family:var(--serif);
+    font-weight:700;font-size:1.3rem;letter-spacing:-.3px;
+    color:var(--text);display:inline-flex;align-items:center;gap:.35rem;
+  }
+  .nav-logo::before{
+    content:"🌸";font-size:1.1rem;
+  }
+  .nav-logo span{color:var(--lavender-dark)}
+
+  .nav-links{display:flex;gap:1.5rem;font-size:.9rem;font-weight:500}
+  .nav-links a{color:var(--muted);position:relative;padding:.3rem 0}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;
+    background:var(--lavender);border-radius:2px;
+    transform:scaleX(0);transform-origin:left;
+    transition:transform .25s;
+  }
+  .nav-links a:hover{color:var(--lavender-dark)}
+  .nav-links a:hover::after{transform:scaleX(1)}
+
+  .nav-actions{display:flex;gap:.5rem;align-items:center}
+  .icon-btn{
+    width:42px;height:42px;
+    background:var(--surface);color:var(--text);
+    border:1px solid var(--border);
+    border-radius:var(--radius-pill);
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:1.05rem;
+    box-shadow:var(--shadow-sm);
+    transition:transform .2s,background .2s,border-color .2s;
+  }
+  .icon-btn:hover{
+    transform:translateY(-2px);
+    background:var(--lavender-soft);
+    border-color:var(--lavender-light);
+  }
+  .menu-btn{display:none}
+
+  @media (max-width:900px){
+    .menu-btn{display:inline-flex}
+    .nav-links{
+      display:none;
+      position:absolute;top:100%;left:0;right:0;
+      background:var(--bg);
+      flex-direction:column;gap:0;
+      padding:.5rem 1rem 1rem;
+      border-bottom:1px solid var(--border);
+      box-shadow:var(--shadow);
+    }
+    .nav-links.open{display:flex;animation:fadeDown .25s ease both}
+    .nav-links li a{
+      padding:.85rem 1rem;
+      display:block;
+      border-radius:var(--radius-sm);
+      background:var(--surface);
+      border:1px solid var(--border);
+      margin-top:.4rem;
+      color:var(--text);
+    }
+    .nav-links a::after{display:none}
+    .nav-links li a:hover{background:var(--lavender-soft);color:var(--lavender-dark)}
+    @keyframes fadeDown{
+      from{opacity:0;transform:translateY(-6px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+  }
+
+  /* ================= LAYOUT ================= */
+  section{padding:5.5rem 1.5rem;position:relative}
+  .container{max-width:var(--maxw);margin:0 auto;width:100%}
+  .section-head{margin-bottom:2.8rem}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-size:.78rem;font-weight:700;letter-spacing:1.8px;
+    text-transform:uppercase;
+    color:var(--lavender-dark);
+    padding:.4rem 1rem;
+    background:var(--lavender-soft);
+    border-radius:var(--radius-pill);
+    margin-bottom:1rem;
+  }
+  .eyebrow::before{
+    content:"";width:6px;height:6px;border-radius:50%;
+    background:var(--lavender);
+  }
+  h2.section-title{
+    font-size:clamp(1.8rem,3.5vw,2.5rem);
+    letter-spacing:-.8px;line-height:1.15;
+    color:var(--text);
+  }
+  .section-sub{
+    color:var(--muted);margin-top:.6rem;
+    max-width:640px;font-size:1rem;
+    font-family:var(--sans);
+  }
+
+  /* ================= BUTTONS ================= */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+    min-height:48px;padding:.8rem 1.6rem;
+    border-radius:var(--radius-pill);
+    font-weight:600;font-size:.92rem;
+    border:1px solid transparent;
+    transition:transform .2s,box-shadow .2s,background .2s;
+    font-family:var(--sans);
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--lavender),var(--lavender-dark));
+    color:#ffffff;
+    box-shadow:0 8px 20px rgba(167,139,250,.35);
+  }
+  .btn-primary:hover{box-shadow:0 12px 28px rgba(167,139,250,.45)}
+  .btn-ghost{
+    background:var(--surface);
+    color:var(--text);
+    border-color:var(--border);
+    box-shadow:var(--shadow-sm);
+  }
+  .btn-ghost:hover{
+    border-color:var(--lavender-light);
+    background:var(--lavender-soft);
+    color:var(--lavender-dark);
+  }
+
+  /* ================= HERO ================= */
+  #cover{
+    min-height:calc(100svh - var(--nav-h));
+    display:flex;align-items:center;
+    padding-top:3rem;padding-bottom:3rem;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.15fr .85fr;
+    gap:3rem;align-items:center;width:100%;
+  }
+  .hero-text .greet{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-size:.82rem;font-weight:600;letter-spacing:.5px;
+    color:var(--mint-dark);
+    padding:.4rem 1rem;
+    background:var(--mint-soft);
+    border-radius:var(--radius-pill);
+    margin-bottom:1.4rem;
+  }
+  .hero-text .greet::before{content:"✦";color:var(--mint)}
+  .hero-text h1{
+    font-size:clamp(2.2rem,5.5vw,3.8rem);
+    line-height:1.08;letter-spacing:-1.5px;
+    margin-bottom:1.2rem;
+    color:var(--text);
+  }
+  .hero-text h1 .mark{
+    position:relative;
+    color:var(--lavender-dark);
+    display:inline-block;
+  }
+  .hero-text h1 .mark::after{
+    content:"";position:absolute;
+    left:0;right:0;bottom:4px;height:14px;
+    background:var(--lavender-soft);
+    border-radius:4px;
+    z-index:-1;
+    transform:rotate(-1deg);
+  }
+  .hero-role{
+    color:var(--muted);
+    font-size:1.08rem;margin-bottom:2rem;
+    max-width:540px;
+  }
+  .hero-role strong{color:var(--text);font-weight:600}
+  .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap}
+
+  .hero-photo{
+    display:flex;justify-content:center;align-items:center;
+    position:relative;
+  }
+  .photo-wrap{
+    position:relative;
+    width:300px;height:300px;
+    max-width:100%;
+  }
+  .photo-wrap::before{
+    content:"";position:absolute;inset:-16px;
+    border-radius:50%;
+    background:conic-gradient(from 0deg,var(--lavender-light),var(--mint-light),var(--peach),var(--lavender-light));
+    filter:blur(2px);
+    opacity:.65;
+    z-index:0;
+    animation:rotate 24s linear infinite;
+  }
+  @keyframes rotate{to{transform:rotate(360deg)}}
+  .photo-frame{
+    position:relative;z-index:1;
+    width:100%;height:100%;
+    border-radius:50%;
+    overflow:hidden;
+    border:6px solid var(--surface);
+    box-shadow:var(--shadow-lg);
+    animation:float 6s ease-in-out infinite;
+  }
+  @keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-12px)}
+  }
+  .photo-frame img{
+    width:100%;height:100%;object-fit:cover;
+  }
+  .badge{
+    position:absolute;
+    padding:.5rem 1rem;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-pill);
+    font-size:.78rem;font-weight:600;
+    box-shadow:var(--shadow);
+    display:flex;align-items:center;gap:.4rem;
+    z-index:2;
+    white-space:nowrap;
+  }
+  .badge-1{top:10px;right:-8px;color:var(--lavender-dark)}
+  .badge-2{bottom:20px;left:-12px;color:var(--mint-dark)}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;text-align:center;gap:2.5rem}
+    .hero-photo{order:-1}
+    .hero-role{margin-left:auto;margin-right:auto}
+    .hero-cta{justify-content:center}
+    .photo-wrap{width:240px;height:240px}
+    .badge{font-size:.72rem;padding:.4rem .8rem}
+  }
+  @media (max-width:480px){
+    #cover{min-height:auto;padding-top:2rem;padding-bottom:3rem}
+    .photo-wrap{width:200px;height:200px}
+    .hero-cta{flex-direction:column;width:100%}
+    .hero-cta .btn{width:100%}
+    .badge-1{top:0;right:0}
+    .badge-2{bottom:0;left:0}
+  }
+
+  /* ================= PROFILE BANNER ================= */
+  #profile{padding-top:1.5rem}
+  .profile-banner{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;
+  }
+  .profile-item{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:1.4rem 1.5rem;
+    box-shadow:var(--shadow-sm);
+    transition:transform .2s,box-shadow .2s;
+    position:relative;overflow:hidden;
+  }
+  .profile-item::before{
+    content:"";position:absolute;
+    top:0;left:0;width:4px;height:100%;
+    background:var(--lavender);
+  }
+  .profile-item:nth-child(2)::before{background:var(--mint)}
+  .profile-item:nth-child(3)::before{background:var(--peach)}
+  .profile-item:hover{
+    transform:translateY(-3px);
+    box-shadow:var(--shadow);
+  }
+  .profile-item h4{
+    font-family:var(--sans);
+    font-size:.72rem;color:var(--muted);
+    text-transform:uppercase;letter-spacing:1.5px;
+    margin-bottom:.4rem;font-weight:600;
+  }
+  .profile-item p{
+    font-family:var(--serif);
+    font-weight:700;font-size:1.05rem;
+    word-break:break-word;line-height:1.3;
+  }
+  @media (max-width:720px){
+    .profile-banner{grid-template-columns:1fr 1fr}
+    .profile-item:nth-child(3){grid-column:1 / -1}
+  }
+  @media (max-width:420px){
+    .profile-banner{grid-template-columns:1fr}
+    .profile-item:nth-child(3){grid-column:auto}
+  }
+
+  /* ================= ABOUT ================= */
+  #about .about-grid{
+    display:grid;grid-template-columns:1.35fr .65fr;
+    gap:2.5rem;align-items:start;
+  }
+  #about p{color:var(--muted);margin-bottom:1rem;font-size:1rem}
+  #about p strong{color:var(--text);font-weight:600}
+  .info-card{
+    background:linear-gradient(160deg,var(--lavender-soft),var(--mint-soft));
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:1.6rem;
+    box-shadow:var(--shadow-sm);
+    position:sticky;top:calc(var(--nav-h) + 20px);
+  }
+  .info-card h4{
+    font-family:var(--sans);
+    margin-bottom:1rem;font-size:.95rem;
+    display:flex;align-items:center;gap:.5rem;
+    color:var(--lavender-dark);
+    font-weight:700;
+  }
+  .info-list li{
+    display:flex;justify-content:space-between;gap:1rem;
+    padding:.6rem 0;
+    border-bottom:1px dashed color-mix(in srgb,var(--border) 80%,transparent);
+    font-size:.9rem;
+    font-family:var(--sans);
+  }
+  .info-list li:last-child{border:0;padding-bottom:0}
+  .info-list .label{color:var(--muted);font-weight:500}
+  .info-list .value{font-weight:600;text-align:right;word-break:break-word}
+  @media (max-width:820px){
+    #about .about-grid{grid-template-columns:1fr}
+    .info-card{position:static}
+  }
+
+  /* ================= TIMELINE ================= */
+  .timeline{
+    position:relative;padding-left:2.4rem;
+  }
+  .timeline::before{
+    content:"";position:absolute;
+    left:8px;top:8px;bottom:8px;
+    width:2px;
+    background:linear-gradient(to bottom,
+      var(--lavender) 0%,
+      var(--mint) 50%,
+      var(--peach) 100%);
+    opacity:.5;
+    border-radius:2px;
+  }
+  .tl-item{
+    position:relative;padding-bottom:1.8rem;
+  }
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{
+    content:"";position:absolute;
+    left:-2.05rem;top:.6rem;
+    width:16px;height:16px;
+    border-radius:50%;
+    background:var(--surface);
+    border:3px solid var(--lavender);
+    box-shadow:0 0 0 4px var(--lavender-soft);
+  }
+  .tl-item:nth-child(2n)::before{
+    border-color:var(--mint);
+    box-shadow:0 0 0 4px var(--mint-soft);
+  }
+  .tl-item:nth-child(3n)::before{
+    border-color:var(--peach);
+    box-shadow:0 0 0 4px var(--peach-soft);
+  }
+  .tl-date{
+    display:inline-block;
+    font-size:.75rem;font-weight:600;
+    color:var(--lavender-dark);
+    padding:.25rem .8rem;
+    background:var(--lavender-soft);
+    border-radius:var(--radius-pill);
+    margin-bottom:.5rem;
+    font-family:var(--sans);
+    letter-spacing:.3px;
+  }
+  .tl-item:nth-child(2n) .tl-date{color:var(--mint-dark);background:var(--mint-soft)}
+  .tl-item:nth-child(3n) .tl-date{color:#9a5b1f;background:var(--peach-soft)}
+  [data-theme="dark"] .tl-item:nth-child(3n) .tl-date{color:var(--peach)}
+  .tl-title{
+    font-size:1.08rem;font-weight:700;
+    line-height:1.35;
+    margin-bottom:.15rem;
+  }
+  .tl-sub{
+    color:var(--muted);font-size:.88rem;
+    margin-bottom:.5rem;font-weight:500;
+    font-family:var(--sans);
+  }
+  .tl-desc{
+    color:var(--muted);font-size:.92rem;
+    font-family:var(--sans);
+    line-height:1.65;
+  }
+  @media (max-width:480px){
+    .timeline{padding-left:1.8rem}
+    .timeline::before{left:6px}
+    .tl-item::before{left:-1.55rem;width:14px;height:14px}
+    .tl-item{padding-bottom:1.5rem}
+  }
+
+  /* ================= SKILLS ================= */
+  .skills-wrap{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.2rem;
+  }
+  .skill-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:1.5rem;
+    box-shadow:var(--shadow-sm);
+    transition:transform .2s,box-shadow .2s;
+  }
+  .skill-card:hover{
+    transform:translateY(-3px);
+    box-shadow:var(--shadow);
+  }
+  .skill-card h4{
+    font-family:var(--sans);
+    font-size:.82rem;font-weight:700;
+    text-transform:uppercase;letter-spacing:1.2px;
+    margin-bottom:1rem;
+    display:flex;align-items:center;gap:.5rem;
+    color:var(--lavender-dark);
+  }
+  .skill-card:nth-child(2) h4{color:var(--mint-dark)}
+  .skill-card:nth-child(3) h4{color:#9a5b1f}
+  [data-theme="dark"] .skill-card:nth-child(3) h4{color:var(--peach)}
+  .skill-card:nth-child(4) h4{color:#be185d}
+  [data-theme="dark"] .skill-card:nth-child(4) h4{color:var(--rose)}
+  .chips{display:flex;flex-wrap:wrap;gap:.5rem}
+  .chip{
+    padding:.5rem .95rem;
+    background:var(--lavender-soft);
+    color:var(--lavender-dark);
+    border-radius:var(--radius-pill);
+    font-size:.82rem;font-weight:500;
+    border:1px solid color-mix(in srgb,var(--lavender) 20%,transparent);
+    transition:transform .15s,background .2s,color .2s;
+    cursor:default;
+    font-family:var(--sans);
+  }
+  .chip:hover{
+    transform:translateY(-2px);
+    background:var(--lavender);
+    color:#fff;
+  }
+  .chip.mint{background:var(--mint-soft);color:var(--mint-dark);border-color:color-mix(in srgb,var(--mint) 25%,transparent)}
+  .chip.mint:hover{background:var(--mint);color:#0a3a2a}
+  .chip.peach{background:var(--peach-soft);color:#9a5b1f;border-color:color-mix(in srgb,var(--peach) 30%,transparent)}
+  [data-theme="dark"] .chip.peach{color:var(--peach)}
+  .chip.peach:hover{background:var(--peach);color:#3a2408}
+  .chip.rose{background:var(--rose-soft);color:#be185d;border-color:color-mix(in srgb,var(--rose) 30%,transparent)}
+  [data-theme="dark"] .chip.rose{color:var(--rose)}
+  .chip.rose:hover{background:var(--rose);color:#3a0a20}
+
+  /* ================= PROJECTS ================= */
+  .projects-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:1.3rem;
+  }
+  .project{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+    display:flex;flex-direction:column;
+    box-shadow:var(--shadow-sm);
+    transition:transform .25s,box-shadow .25s,border-color .25s;
+  }
+  .project:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow-lg);
+    border-color:var(--lavender-light);
+  }
+  .project-thumb{
+    height:150px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:3rem;
+    position:relative;
+    background:linear-gradient(135deg,var(--lavender-soft),var(--lavender-light));
+  }
+  .project:nth-child(3n+2) .project-thumb{
+    background:linear-gradient(135deg,var(--mint-soft),var(--mint-light));
+  }
+  .project:nth-child(3n+3) .project-thumb{
+    background:linear-gradient(135deg,var(--peach-soft),var(--peach));
+  }
+  .project-thumb::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.4),transparent 60%);
+    pointer-events:none;
+  }
+  .project-body{
+    padding:1.4rem;flex:1;display:flex;flex-direction:column;
+  }
+  .project-body h3{
+    font-size:1.08rem;margin-bottom:.5rem;
+    line-height:1.3;color:var(--text);
+  }
+  .project-body p{
+    color:var(--muted);font-size:.9rem;
+    margin-bottom:1rem;flex:1;line-height:1.6;
+    font-family:var(--sans);
+  }
+  .tags{
+    display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1rem;
+  }
+  .tag{
+    font-size:.7rem;font-weight:600;
+    padding:.28rem .7rem;
+    background:var(--surface-2);
+    color:var(--muted);
+    border-radius:var(--radius-pill);
+    font-family:var(--sans);
+    letter-spacing:.2px;
+  }
+  .project-links{display:flex;gap:1.2rem;flex-wrap:wrap}
+  .project-links a{
+    font-size:.85rem;font-weight:600;
+    color:var(--lavender-dark);
+    display:inline-flex;align-items:center;gap:.3rem;
+    padding:.3rem 0;
+  }
+  .project-links a:hover{color:var(--lavender)}
+  .project-links a::after{content:"→";transition:transform .2s}
+  .project-links a:hover::after{transform:translateX(3px)}
+
+  /* ================= CERTIFICATES ================= */
+  .cert-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    gap:1rem;
+  }
+  .cert{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:1.2rem;
+    display:flex;gap:1rem;align-items:flex-start;
+    box-shadow:var(--shadow-sm);
+    transition:transform .2s,box-shadow .2s;
+  }
+  .cert:hover{
+    transform:translateY(-3px);
+    box-shadow:var(--shadow);
+  }
+  .cert-icon{
+    flex-shrink:0;width:44px;height:44px;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--lavender-light),var(--lavender));
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.15rem;
+    color:#fff;
+  }
+  .cert:nth-child(3n+2) .cert-icon{
+    background:linear-gradient(135deg,var(--mint-light),var(--mint));
+  }
+  .cert:nth-child(3n+3) .cert-icon{
+    background:linear-gradient(135deg,var(--peach),#fb923c);
+  }
+  .cert h4{
+    font-family:var(--sans);
+    font-size:.94rem;margin-bottom:.2rem;
+    line-height:1.35;font-weight:700;
+    color:var(--text);
+  }
+  .cert p{
+    font-size:.8rem;color:var(--muted);
+    font-family:var(--sans);
+  }
+  .cert a{
+    font-size:.8rem;display:inline-block;margin-top:.4rem;
+    font-weight:600;
+    color:var(--lavender-dark);
+  }
+
+  /* ================= ACHIEVEMENTS ================= */
+  .ach-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:1rem;
+  }
+  .ach-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:1.6rem 1.4rem;
+    text-align:center;
+    box-shadow:var(--shadow-sm);
+    transition:transform .25s,box-shadow .25s;
+    position:relative;overflow:hidden;
+  }
+  .ach-card::before{
+    content:"";position:absolute;
+    top:-40px;right:-40px;
+    width:100px;height:100px;
+    border-radius:50%;
+    background:var(--lavender-soft);
+    opacity:.6;
+  }
+  .ach-card:nth-child(2)::before{background:var(--mint-soft)}
+  .ach-card:nth-child(3)::before{background:var(--peach-soft)}
+  .ach-card:nth-child(4)::before{background:var(--rose-soft)}
+  .ach-card:nth-child(5)::before{background:var(--lavender-soft)}
+  .ach-card:nth-child(6)::before{background:var(--mint-soft)}
+  .ach-card:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow);
+  }
+  .ach-card .num{
+    font-family:var(--serif);
+    font-size:2.2rem;font-weight:800;
+    line-height:1;
+    letter-spacing:-1px;
+    color:var(--lavender-dark);
+    margin-bottom:.5rem;
+    position:relative;
+  }
+  .ach-card:nth-child(2) .num{color:var(--mint-dark)}
+  .ach-card:nth-child(3) .num{color:#9a5b1f}
+  [data-theme="dark"] .ach-card:nth-child(3) .num{color:var(--peach)}
+  .ach-card:nth-child(4) .num{color:#be185d}
+  [data-theme="dark"] .ach-card:nth-child(4) .num{color:var(--rose)}
+  .ach-card .lbl{
+    color:var(--muted);font-size:.85rem;
+    line-height:1.5;font-weight:500;
+    font-family:var(--sans);
+    position:relative;
+  }
+
+  /* ================= CONTACT ================= */
+  #contact{text-align:center}
+  #contact .section-head{text-align:center}
+  #contact .section-sub{margin-left:auto;margin-right:auto}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:1rem;margin-top:2.5rem;
+  }
+  .contact-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:1.5rem 1rem;
+    min-height:130px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;
+    color:var(--text);
+    box-shadow:var(--shadow-sm);
+  }
+  .contact-card:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow);
+    background:var(--lavender-soft);
+    border-color:var(--lavender-light);
+  }
+  .contact-card .ic{
+    font-size:1.7rem;margin-bottom:.7rem;
+    width:52px;height:52px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;
+    background:var(--lavender-soft);
+    transition:transform .25s;
+  }
+  .contact-card:nth-child(2n) .ic{background:var(--mint-soft)}
+  .contact-card:nth-child(3n) .ic{background:var(--peach-soft)}
+  .contact-card:hover .ic{transform:scale(1.08) rotate(-5deg)}
+  .contact-card .k{
+    font-size:.7rem;color:var(--muted);
+    text-transform:uppercase;letter-spacing:1.5px;
+    font-family:var(--sans);font-weight:600;
+  }
+  .contact-card .v{
+    font-weight:700;color:var(--text);
+    font-size:.9rem;word-break:break-word;
+    margin-top:.3rem;font-family:var(--sans);
+  }
+
+  /* ================= FOOTER ================= */
+  footer{
+    text-align:center;padding:2.5rem 1.5rem;
+    color:var(--muted);font-size:.85rem;
+    border-top:1px solid var(--border);
+    font-family:var(--sans);
+  }
+  footer .heart{
+    color:var(--lavender-dark);
+    font-size:1rem;
+    display:inline-block;
+    animation:beat 1.5s ease-in-out infinite;
+  }
+  @keyframes beat{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.15)}
+  }
+
+  /* ================= REVEAL ================= */
+  .reveal{
+    opacity:0;transform:translateY(28px);
+    transition:opacity .7s ease,transform .7s ease;
+  }
+  .reveal.visible{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none}
+  }
+
+  /* ================= MOBILE ================= */
+  @media (max-width:640px){
+    section{padding:3.5rem 1.2rem}
+    nav{padding:.7rem 1rem}
+    .section-head{margin-bottom:2rem}
+    body::before,body::after{filter:blur(60px)}
+    .hero-text h1{letter-spacing:-1px}
+  }
+  @media (max-width:380px){
+    section{padding:2.8rem 1rem}
+    .hero-text h1{font-size:1.9rem}
+    .contact-grid{grid-template-columns:1fr}
+  }
+  @supports (padding: max(0px)){
+    nav{
+      padding-left:max(1.5rem, env(safe-area-inset-left));
+      padding-right:max(1.5rem, env(safe-area-inset-right));
+    }
+    footer{padding-bottom:max(2.5rem, env(safe-area-inset-bottom))}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+  <a href="#cover" class="nav-logo">Nama<span>.</span></a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#cover">Home</a></li>
+    <li><a href="#about">Tentang</a></li>
+    <li><a href="#education">Pendidikan</a></li>
+    <li><a href="#experience">Pengalaman</a></li>
+    <li><a href="#skills">Keahlian</a></li>
+    <li><a href="#projects">Karya</a></li>
+    <li><a href="#certs">Sertifikat</a></li>
+    <li><a href="#contact">Kontak</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <button class="icon-btn" id="themeBtn" aria-label="Ganti tema">🌙</button>
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Buka menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+  </div>
+</nav>
+
+<!-- ================= 1. COVER ================= -->
+<section id="cover">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="greet">Portofolio Psikologi</div>
+        <h1>Halo, saya<br><span class="mark">Nama Anda</span><br>Calon Psikolog.</h1>
+        <p class="hero-role">
+          Mahasiswi <strong>Psikologi</strong> yang berfokus pada
+          <em>asesmen psikologis</em>, <em>konseling dasar</em>, dan
+          <em>psikologi industri &amp; organisasi</em>. Saya percaya setiap
+          orang berhak didengar dan dipahami.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">Lihat Karya →</a>
+          <a href="#contact" class="btn btn-ghost">Kenalan Yuk</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <div class="photo-wrap">
+          <div class="badge badge-1">💜 Open to Internship</div>
+          <div class="badge badge-2">🌿 PIO Enthusiast</div>
+          <div class="photo-frame">
+            <img src="https://i.pravatar.cc/400?img=47" alt="Foto Nama Anda" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2. PROFIL ================= -->
+<section id="profile">
+  <div class="container reveal">
+    <div class="profile-banner">
+      <div class="profile-item">
+        <h4>Nama Lengkap</h4>
+        <p>Nama Anda, S.Psi.</p>
+      </div>
+      <div class="profile-item">
+        <h4>Bidang</h4>
+        <p>Psikologi — PIO</p>
+      </div>
+      <div class="profile-item">
+        <h4>Lokasi</h4>
+        <p>Depok, Indonesia</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. ABOUT ================= -->
+<section id="about">
+  <div class="container reveal">
+    <div class="section-head">
+      <span class="eyebrow">Tentang Saya</span>
+      <h2 class="section-title">Kenali saya lebih dekat</h2>
+    </div>
+
+    <div class="about-grid">
+      <div>
+        <p>
+          Saya adalah <strong>mahasiswa Psikologi</strong> tingkat akhir yang
+          memiliki minat besar pada <em>asesmen psikologis</em> dan
+          <em>psikologi industri &amp; organisasi (PIO)</em>. Bagi saya,
+          psikologi bukan sekadar ilmu — tapi cara memahami manusia secara
+          utuh, dengan empati dan tanpa penghakiman.
+        </p>
+        <p>
+          Selama kuliah, saya aktif sebagai <strong>asisten praktikum
+          psikodiagnostik</strong>, mengikuti <strong>magang di divisi HR</strong>
+          sebuah startup, dan terlibat dalam <strong>program psikoedukasi
+          kesehatan mental</strong> untuk mahasiswa. Saya juga terlatih
+          melakukan wawancara, observasi, dan administrasi alat tes
+          psikologi (WISC, TAT, EPPS, grafis).
+        </p>
+        <p>
+          <strong>Tujuan saya:</strong> menjadi psikolog yang mampu
+          menghadirkan <em>ruang aman</em> bagi setiap individu — baik dalam
+          konteks klinis, pendidikan, maupun dunia kerja.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h4>📌 Data Singkat</h4>
+        <ul class="info-list">
+          <li><span class="label">Nama</span><span class="value">Nama Anda</span></li>
+          <li><span class="label">Usia</span><span class="value">22 tahun</span></li>
+          <li><span class="label">Lokasi</span><span class="value">Depok</span></li>
+          <li><span class="label">Bahasa</span><span class="value">ID, EN</span></li>
+          <li><span class="label">Fokus</span><span class="value">PIO</span></li>
+          <li><span class="label">Email</span><span class="value">email@anda.com</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4. EDUCATION ================= -->
+<section id="education">
+  <div class="container reveal">
+    <div class="section-head">
+      <span class="eyebrow">Pendidikan</span>
+      <h2 class="section-title">Riwayat Pendidikan</h2>
+      <p class="section-sub">Perjalanan akademik yang membentuk cara saya memahami manusia.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-date">2020 — 2024</span>
+        <div class="tl-title">S1 Psikologi</div>
+        <div class="tl-sub">Universitas Indonesia — IPK 3.82 / 4.00</div>
+        <p class="tl-desc">Fokus pada psikodiagnostik, psikologi industri &amp; organisasi, dan konseling. Skripsi: "Pengaruh Job Crafting terhadap Work Engagement Karyawan Milenial dengan Meaningful Work sebagai Mediator".</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">2017 — 2020</span>
+        <div class="tl-title">SMA Jurusan IPS</div>
+        <div class="tl-sub">SMA Negeri 1 Contoh</div>
+        <p class="tl-desc">Aktif di OSIS, ekstrakurikuler PIK-R (Pusat Informasi &amp; Konseling Remaja), dan menjadi peer counselor untuk teman sebaya.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5. EXPERIENCE ================= -->
+<section id="experience">
+  <div class="container reveal">
+    <div class="section-head">
+      <span class="eyebrow">Pengalaman</span>
+      <h2 class="section-title">Pengalaman Profesional</h2>
+      <p class="section-sub">Magang, asisten praktikum, volunteer, dan organisasi.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-date">Jul 2023 — Des 2023</span>
+        <div class="tl-title">Magang HR Intern — People Development</div>
+        <div class="tl-sub">PT Startup Contoh — Jakarta</div>
+        <p class="tl-desc">Membantu proses rekrutmen (screening CV, wawancara awal), menyusun job description, dan terlibat dalam program training &amp; development karyawan baru.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">2022 — 2024</span>
+        <div class="tl-title">Asisten Praktikum Psikodiagnostik</div>
+        <div class="tl-sub">Laboratorium Psikologi Kampus</div>
+        <p class="tl-desc">Mendampingi 60+ mahasiswa dalam praktikum administrasi, skoring, dan interpretasi alat tes (WISC, TAT, EPPS, Grafis, SSCT). Bertanggung jawab atas validitas laporan asesmen.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">2023 — Sekarang</span>
+        <div class="tl-title">Volunteer Peer Counselor</div>
+        <div class="tl-sub">Layanan Konseling Mahasiswa</div>
+        <p class="tl-desc">Menjadi teman cerita bagi mahasiswa lain melalui layanan konseling sebaya (bimbingan dasar) dan terlibat dalam program "Mental Health Awareness Week".</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">2021 — 2023</span>
+        <div class="tl-title">Divisi Riset &amp; Pengembangan</div>
+        <div class="tl-sub">Himpunan Mahasiswa Psikologi</div>
+        <p class="tl-desc">Mengoordinasikan survei internal, publikasi jurnal himpunan, dan pelatihan penulisan karya ilmiah untuk anggota.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 6. SKILLS ================= -->
+<section id="skills">
+  <div class="container reveal">
+    <div class="section-head">
+      <span class="eyebrow">Keahlian</span>
+      <h2 class="section-title">Kompetensi Psikologi</h2>
+      <p class="section-sub">Keterampilan asesmen, konseling, riset, dan soft skill pendukung.</p>
+    </div>
+
+    <div class="skills-wrap">
+      <div class="skill-card">
+        <h4>🧠 Asesmen Psikologi</h4>
+        <div class="chips">
+          <span class="chip">Wawancara Klinis</span>
+          <span class="chip">Observasi</span>
+          <span class="chip">WISC</span>
+          <span class="chip">TAT</span>
+          <span class="chip">EPPS</span>
+          <span class="chip">Tes Grafis</span>
+          <span class="chip">SSCT</span>
+          <span class="chip">Papikostick</span>
+          <span class="chip">Skoring &amp; Interpretasi</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h4>💬 Konseling Dasar</h4>
+        <div class="chips">
+          <span class="chip mint">Active Listening</span>
+          <span class="chip mint">Rapport Building</span>
+          <span class="chip mint">Empati</span>
+          <span class="chip mint">Refleksi</span>
+          <span class="chip mint">Konseling Sebaya</span>
+          <span class="chip mint">Psikoedukasi</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h4>💼 Psikologi Industri (PIO)</h4>
+        <div class="chips">
+          <span class="chip peach">Rekrutmen &amp; Seleksi</span>
+          <span class="chip peach">Job Analysis</span>
+          <span class="chip peach">Training &amp; Development</span>
+          <span class="chip peach">Performance Management</span>
+          <span class="chip peach">Employee Well-being</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h4>📊 Riset &amp; Data</h4>
+        <div class="chips">
+          <span class="chip rose">SPSS</span>
+          <span class="chip rose">JASP</span>
+          <span class="chip rose">Riset Kuantitatif</span>
+          <span class="chip rose">Riset Kualitatif</span>
+          <span class="chip rose">Analisis Tematik</span>
+          <span class="chip rose">Google Forms</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7. PROJECTS ================= -->
+<section id="projects">
+  <div class="container reveal">
+    <div class="section-head">
+      <span class="eyebrow">Karya</span>
+      <h2 class="section-title">Proyek &amp; Laporan Pilihan</h2>
+      <p class="section-sub">Hasil praktikum, riset, dan program intervensi yang pernah saya kerjakan.</p>
+    </div>
+
+    <div class="projects-grid">
+      <article class="project">
+        <div class="project-thumb">📝</div>
+        <div class="project-body">
+          <h3>Laporan Asesmen Psikologi</h3>
+          <p>Laporan asesmen lengkap (wawancara, observasi, dan 4 alat tes) untuk studi kasus individu di praktikum psikodiagnostik.</p>
+          <div class="tags"><span class="tag">Asesmen</span><span class="tag">WISC</span><span class="tag">TAT</span></div>
+          <div class="project-links"><a href="#">Lihat →</a></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-thumb">🌸</div>
+        <div class="project-body">
+          <h3>Program Psikoedukasi "Ruang Aman"</h3>
+          <p>Program psikoedukasi kesehatan mental untuk 100+ mahasiswa baru — modul, sesi, dan evaluasi program.</p>
+          <div class="tags"><span class="tag">Psikoedukasi</span><span class="tag">Mental Health</span></div>
+          <div class="project-links"><a href="#">Lihat →</a></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-thumb">📊</div>
+        <div class="project-body">
+          <h3>Skripsi — Job Crafting &amp; Engagement</h3>
+          <p>Penelitian kuantitatif (N=180) tentang pengaruh job crafting terhadap work engagement pada karyawan milenial.</p>
+          <div class="tags"><span class="tag">Riset</span><span class="tag">SPSS</span><span class="tag">PIO</span></div>
+          <div class="project-links"><a href="#">Lihat →</a></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-thumb">🎯</div>
+        <div class="project-body">
+          <h3>Modul Training Karyawan Baru</h3>
+          <p>Modul pelatihan onboarding 2 hari untuk karyawan baru startup — mencakup materi, aktivitas, dan evaluasi.</p>
+          <div class="tags"><span class="tag">Training</span><span class="tag">PIO</span></div>
+          <div class="project-links"><a href="#">Lihat →</a></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-thumb">🧸</div>
+        <div class="project-body">
+          <h3>Program Intervensi Anak</h3>
+          <p>Rancangan program stimulasi kognitif &amp; sosial-emosional untuk anak usia 5–6 tahun (studi kasus di TK).</p>
+          <div class="tags"><span class="tag">Anak</span><span class="tag">Intervensi</span></div>
+          <div class="project-links"><a href="#">Lihat →</a></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-thumb">💬</div>
+        <div class="project-body">
+          <h3>Role-Play Konseling Dasar</h3>
+          <p>Dokumentasi sesi role-play konseling (15 sesi) dengan fokus pada active listening, empati, dan rapport building.</p>
+          <div class="tags"><span class="tag">Konseling</span><span class="tag">Praktik</span></div>
+          <div class="project-links"><a href="#">Lihat →</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 8. CERTIFICATES ================= -->
+<section id="certs">
+  <div class="container reveal">
+    <div class="section-head">
+      <span class="eyebrow">Sertifikat</span>
+      <h2 class="section-title">Sertifikat &amp; Pelatihan</h2>
+      <p class="section-sub">Bukti pembelajaran berkelanjutan di bidang psikologi.</p>
+    </div>
+
+    <div class="cert-grid">
+      <div class="cert">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <h4>Pelatihan Asesmen Psikologi</h4>
+          <p>HIMPSI · 2023</p>
+          <a href="#">Lihat →</a>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <h4>Pelatihan Konseling Dasar</h4>
+          <p>Universitas Contoh · 2022</p>
+          <a href="#">Lihat →</a>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <h4>Seminar Mental Health Awareness</h4>
+          <p>Into The Light ID · 2023</p>
+          <a href="#">Lihat →</a>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <h4>TOEFL ITP — Score 570</h4>
+          <p>IIEF · 2023</p>
+          <a href="#">Lihat →</a>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <h4>Pelatihan SPSS untuk Riset</h4>
+          <p>Coursera · 2022</p>
+          <a href="#">Lihat →</a>
+        </div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <h4>Workshop PIO — Job Analysis</h4>
+          <p>APIO · 2024</p>
+          <a href="#">Lihat →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 9. ACHIEVEMENTS ================= -->
+<section id="achievements">
+  <div class="container reveal">
+    <div class="section-head">
+      <span class="eyebrow">Pencapaian</span>
+      <h2 class="section-title">Prestasi &amp; Pencapaian</h2>
+      <p class="section-sub">Momen penting selama menempuh pendidikan dan praktik.</p>
+    </div>
+
+    <div class="ach-grid">
+      <div class="ach-card">
+        <div class="num">3.82</div>
+        <div class="lbl">IPK akhir S1 Psikologi</div>
+      </div>
+      <div class="ach-card">
+        <div class="num">100+</div>
+        <div class="lbl">Jam praktik asesmen &amp; konseling</div>
+      </div>
+      <div class="ach-card">
+        <div class="num">60+</div>
+        <div class="lbl">Mahasiswa didampingi praktikum</div>
+      </div>
+      <div class="ach-card">
+        <div class="num">Juara 2</div>
+        <div class="lbl">Lomba Esai Psikologi Nasional 2023</div>
+      </div>
+      <div class="ach-card">
+        <div class="num">1</div>
+        <div class="lbl">Publikasi jurnal nasional</div>
+      </div>
+      <div class="ach-card">
+        <div class="num">100+</div>
+        <div class="lbl">Peserta program psikoedukasi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 10. CONTACT ================= -->
+<section id="contact">
+  <div class="container reveal">
+    <div class="section-head">
+      <span class="eyebrow">Kontak</span>
+      <h2 class="section-title">Mari Terhubung</h2>
+      <p class="section-sub">
+        Terbuka untuk peluang magang, kolaborasi riset, program psikoedukasi,
+        atau sekadar berdiskusi seputar dunia psikologi.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:email@anda.com">
+        <div class="ic">✉️</div>
+        <div class="k">Email</div>
+        <div class="v">email@anda.com</div>
+      </a>
+      <a class="contact-card" href="https://wa.me/6281234567890" target="_blank" rel="noopener">
+        <div class="ic">💬</div>
+        <div class="k">WhatsApp</div>
+        <div class="v">Chat sekarang</div>
+      </a>
+      <a class="contact-card" href="https://linkedin.com/in/username" target="_blank" rel="noopener">
+        <div class="ic">💼</div>
+        <div class="k">LinkedIn</div>
+        <div class="v">in/username</div>
+      </a>
+      <a class="contact-card" href="https://instagram.com/username" target="_blank" rel="noopener">
+        <div class="ic">📸</div>
+        <div class="k">Instagram</div>
+        <div class="v">@username</div>
+      </a>
+      <a class="contact-card" href="https://scholar.google.com/" target="_blank" rel="noopener">
+        <div class="ic">📚</div>
+        <div class="k">Google Scholar</div>
+        <div class="v">Profil Riset</div>
+      </a>
+      <a class="contact-card" href="https://researchgate.net/" target="_blank" rel="noopener">
+        <div class="ic">🔬</div>
+        <div class="k">ResearchGate</div>
+        <div class="v">Publikasi</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  © <span id="year"></span> Nama Anda · Dibuat dengan <span class="heart">💜</span> untuk kesehatan mental
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ============ THEME (default: light) ============ */
+  const themeBtn = document.getElementById('themeBtn');
+  const savedTheme = localStorage.getItem('theme');
+  applyTheme(savedTheme || 'light');
+
+  themeBtn.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme') || 'light';
+    applyTheme(cur === 'dark' ? 'light' : 'dark');
+  });
+
+  function applyTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    localStorage.setItem('theme', t);
+    themeBtn.textContent = t === 'dark' ? '☀️' : '🌙';
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = t === 'dark' ? '#171225' : '#faf8ff';
+  }
+
+  /* ============ HAMBURGER MENU ============ */
+  const menuBtn  = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.textContent = open ? '✕' : '☰';
+  });
+
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)){
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900){
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
+    }
+  });
+
+  /* ============ REVEAL ON SCROLL ============ */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+
+</body>
+</html>
